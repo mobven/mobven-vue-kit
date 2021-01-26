@@ -3,13 +3,21 @@ const utils = require('./utils');
 const config = require('../config');
 const vueLoaderConfig = require('./vue-loader.conf');
 
+
+// happypack config
+const HappyPack = require('happypack')
+const os = require('os')
+const happyThreadPool = HappyPack.ThreadPool({
+  size: os.cpus().length > 4 ? 4 : os.cpus().length
+})
+
 function resolve(dir) {
   return path.join(__dirname, '..', dir);
 }
 module.exports = {
   context: path.resolve(__dirname, '../'),
   entry: {
-    app: './src/main.js',
+    app: './src/main.ts',
   },
   output: {
     path: config.build.assetsRoot,
@@ -20,10 +28,12 @@ module.exports = {
         : config.dev.assetsPublicPath,
   },
   resolve: {
-    extensions: ['.js', '.vue', '.json'],
+    extensions: ['.js', '.vue', '.json', '.ts'],
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
+      '@components': resolve('src/components'),
+      '@views': resolve('src/views'),
     },
   },
   module: {
@@ -35,12 +45,17 @@ module.exports = {
       },
       {
         test: /\.js$/,
-        loader: 'babel-loader',
-        include: [
-          resolve('src'),
-          resolve('test'),
-          resolve('node_modules/webpack-dev-server/client'),
-        ],
+        include: [resolve('src'), resolve('test'), resolve('node_modules/webpack-dev-server/client')],
+        use: 'happypack/loader?id=happy-js',
+        // loader: 'babel-loader',
+      },
+      {
+        test: /\.tsx?$/,
+        loader: 'ts-loader',
+        exclude: /node_modules/,
+        options: {
+          appendTsSuffixTo: [/\.vue$/],
+        }
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
@@ -80,4 +95,18 @@ module.exports = {
     tls: 'empty',
     child_process: 'empty',
   },
+  plugins: [
+    new HappyPack({
+      id: 'happy-js',
+      loaders: ['babel-loader'],
+      threadPool: happyThreadPool,
+      verbose: true
+    }),
+    new HappyPack({
+      id: 'happy-css',
+      loaders: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
+      threadPool: happyThreadPool,
+      verbose: true
+    })
+  ]
 };

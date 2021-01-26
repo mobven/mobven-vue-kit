@@ -1,0 +1,64 @@
+.home {
+  flex: auto;
+  width: 100%;
+  .content {
+    display: flex;
+    flex-direction: row;
+    min-height: 90vh;
+    background-color: #108ee9;
+    article {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      .txt {
+        color: azure;
+        font-size: 30px;
+        text-shadow: 5px 5px 5px #FF0000;
+        
+        position:relative;
+        animation-name: myfirst;
+        animation-duration: 5s;
+        animation-timing-function: linear;
+        animation-delay: 2s;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+        animation-play-state: running;
+        /* Safari and Chrome: */
+        -webkit-animation-name: myfirst;
+        -webkit-animation-duration: 5s;
+        -webkit-animation-timing-function: linear;
+        -webkit-animation-delay: 2s;
+        -webkit-animation-iteration-count: infinite;
+        -webkit-animation-direction: alternate;
+        -webkit-animation-play-state: running;
+      }
+    }
+  }
+  header,
+  footer {
+    background-color: #7dbcea;
+  }
+  aside {
+    background-color: #3ba0e9;
+    min-width: 120px;
+  }
+}
+
+@keyframes myfirst
+{
+	0%   {color:red; left:0px; top:0px;}
+	25%  {color:yellow; left:200px; top:0px;}
+	50%  {color:blue; left:200px; top:200px;}
+	75%  {color:green; left:0px; top:200px;}
+	100% {color:red; left:0px; top:0px;}
+}
+
+@-webkit-keyframes myfirst /* Safari and Chrome */
+{
+	0%   {color:red; left:0px; top:0px;}
+	25%  {color:yellow; left:200px; top:0px;}
+	50%  {color:blue; left:200px; top:200px;}
+	75%  {color:green; left:0px; top:200px;}
+	100% {color:red; left:0px; top:0px;}
+}
