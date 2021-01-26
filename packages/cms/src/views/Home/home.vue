@@ -6,7 +6,6 @@
             <article>
                 <p class="txt">{{ author }}</p>
             </article>
-
         </div>
     </div>    
 </template>
