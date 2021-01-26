@@ -1,0 +1,40 @@
+{
+  "name": "@osmanli-yatirim/base",
+  "version": "0.0.1",
+  "description": "Osmanlı Yatırım Base Library",
+  "main": "dist/main.js",
+  "scripts": {
+    "storybook": "start-storybook -s ./ -p 6006",
+    "build": "webpack --config=build/webpack.config.js",
+    "start": "npm run build && webpack-dev-server --inline --progress --config build/webpack.config.js"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.3",
+    "@storybook/vue": "^6.0.28",
+    "babel-loader": "^8.2.1",
+    "bootstrap": "^4.5.3",
+    "node-sass": "^5.0.0",
+    "sass-loader": "^10.1.0",
+    "vue-loader": "^15.9.5",
+    "vue-template-compiler": "^2.6.12",
+    "webpack": "^4.32.2",
+    "webpack-cli": "^3.3.0",
+    "webpack-dev-server": "^3.11.0"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@fullcalendar/daygrid": "^5.5.0",
+    "@fullcalendar/interaction": "^5.5.0",
+    "@fullcalendar/vue": "^5.5.0",
+    "@storybook/addon-actions": "^6.1.10",
+    "@storybook/addon-knobs": "^6.1.10",
+    "@storybook/addon-storysource": "^6.1.11",
+    "storybook-addon-vue-info": "^1.4.2",
+    "style-loader": "^2.0.0",
+    "v-click-outside": "^3.1.2",
+    "vue-select": "^3.11.2",
+    "vue-the-mask": "^0.11.1",
+    "vue2-datepicker": "^3.8.2",
+    "vue2-dropzone": "^3.6.0"
+  }
+}
