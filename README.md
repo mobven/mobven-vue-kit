@@ -1,1 +1,6 @@
-Osmanlı Yatirim WEB
+Vue
+Webpack
+Vuex
+Scss
+Typescript
+Storybook
